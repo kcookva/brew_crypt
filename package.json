@@ -1,0 +1,19 @@
+{
+  "name": "ledgr",
+  "version": "1.0.0",
+  "description": "NodeJS blockchain with privacy in mind",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kcookvt/ledgr.git"
+  },
+  "author": "kcookvt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kcookvt/ledgr/issues"
+  },
+  "homepage": "https://github.com/kcookvt/ledgr#readme"
+}
