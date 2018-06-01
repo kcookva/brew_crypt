@@ -2,7 +2,7 @@
   "name": "brewcrypt",
   "version": "1.0.0",
   "description": "NodeJS blockchain with privacy in mind",
-  "main": "main.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/kcookvt/ledgr#readme",
   "dependencies": {
-    "crypto-js": "^3.1.9-1"
+    "crypto-js": "^3.1.9-1",
+    "readline-sync": "^1.4.9"
   },
   "devDependencies": {}
 }
