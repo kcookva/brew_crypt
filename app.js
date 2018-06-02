@@ -1,3 +1,6 @@
+// BrewCrypt
+
+
 const SHA512 = require("crypto-js/sha512");
 var readline = require('readline-sync');
 
@@ -12,7 +15,6 @@ class Transaction {
 
 class Block {
     constructor(timestamp, transactions, previousHash = '') {
-        this.index = 0;
         this.previousHash = previousHash;
         this.timestamp = timestamp;
         this.transactions = transactions;
@@ -40,7 +42,7 @@ class Blockchain {
         this.chain = [this.createGenesisBlock()];
         this.difficulty = 3;
         this.pendingTransactions = [];
-        this.miningReward = 100;
+        this.miningReward = 10;
     }
 
     createGenesisBlock() {
@@ -49,6 +51,10 @@ class Blockchain {
 
     getLatestBlock() {
         return this.chain[this.chain.length - 1];
+    }
+
+    getAllBlocks() {
+        return this.chain;
     }
 
     minePendingTransactions(miningRewardAddress){
@@ -105,13 +111,21 @@ class Blockchain {
 
 let brewcrypt = new Blockchain();
 
-var address1 = readline.question('Enter your blockchain address - ');
-var address2 = readline.question('Enter the address you are sending to - ');
-
-brewcrypt.createTransaction(new Transaction(address1, address2, 100));
+console.log('\n\n Latest block is:', brewcrypt.getLatestBlock());
+console.log('\n-----------------------------');
 
 
-var blockinput = readline.question('Enter amounts of blocks to be mined -  ');
+var address1 = readline.question('\n\nEnter your blockchain address - ');
+var address2 = readline.question('\nEnter the address you are sending to - ');
+
+brewcrypt.createTransaction(new Transaction(address1, address2, 10));
+
+if(address2 == address1) {
+    console.log('You cannot send transactions to yourself...');
+    return process.exit();
+}
+
+var blockinput = readline.question('Enter amounts of transaction blocks to be mined -  ');
 
 for(i = 0; i <= blockinput; i++) {
     console.log('\n Starting the miner...');
@@ -121,5 +135,5 @@ for(i = 0; i <= blockinput; i++) {
     console.log('\n Is chain valid?: ', brewcrypt.isChainValid());
 }
 
+console.log('\n\n Blockchain is:', brewcrypt.getAllBlocks());
 console.log('\n-----------------------------');
-console.log('\n\n Latest block is:', brewcrypt.getLatestBlock());
