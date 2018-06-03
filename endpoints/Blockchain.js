@@ -14,8 +14,7 @@ module.exports = class Blockchain {
     }
 
     createGenesisBlock() {
-        var today = new Date();
-        return new Block(today.toLocaleDateString('en-US'), [], "0");
+        return new Block(Date.now(), [], "0");
     }
 
     getLatestBlock() {
@@ -32,23 +31,22 @@ module.exports = class Blockchain {
     }
 
     minePendingTransactions(miningRewardAddress) {
-        var today = new Date();
-        let block = new Block(today.toLocaleDateString('en-US'), this.pendingTransactions, this.getLatestBlock().hash);
+        let block = new Block(Date.now(), this.pendingTransactions, this.getLatestBlock().hash);
         block.mineBlock(this.difficulty);
 
         console.log('Block successfully mined!');
         this.chain.push(block);
 
         this.pendingTransactions = [
-            new Transaction(block1, miningRewardAddress, this.miningReward)
+            new Transaction(null, miningRewardAddress, this.miningReward)
         ];
     }
 
-    createTransaction(transaction){
+    createTransaction(transaction) {
         this.pendingTransactions.push(transaction);
     }
 
-    getBalanceOfAddress(address){
+    getBalanceOfAddress(address) {
         let balance = 0;
 
         for(const block of this.chain){
@@ -67,7 +65,7 @@ module.exports = class Blockchain {
     }
 
     isChainValid() {
-        for (let i = 1; i < this.chain.length; i++){
+        for (let i = 1; i < this.chain.length; i++) {
             const currentBlock = this.chain[i];
             const previousBlock = this.chain[i - 1];
 
