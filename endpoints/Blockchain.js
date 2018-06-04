@@ -1,3 +1,5 @@
+'use strict';
+
 // Import modules
 const SHA512 = require("crypto-js/sha512");
 var readline = require('readline-sync');
@@ -8,7 +10,7 @@ var Transaction = require('./Transactions.js');
 module.exports = class Blockchain {
     constructor() {
         this.chain = [this.createGenesisBlock()];
-        this.difficulty = 2;
+        this.difficulty = 3;
         this.pendingTransactions = [];
         this.miningReward = 10;
     }

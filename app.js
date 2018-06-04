@@ -5,7 +5,7 @@ var Blockchain = require('./endpoints/Blockchain.js');
 var Block = require('./endpoints/Block.js');
 var Transaction = require('./endpoints/Block.js');
 
-let brewcrypt = new Blockchain();
+var brewcrypt = new Blockchain();
 
 console.log('\n\n Latest block is:', brewcrypt.getLatestBlock());
 console.log('\n-----------------------------');

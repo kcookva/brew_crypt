@@ -1,3 +1,5 @@
+'use strict';
+
 // Import modules
 const SHA512 = require("crypto-js/sha512");
 var readline = require('readline-sync');
@@ -5,7 +7,7 @@ var Blockchain = require('./Blockchain.js');
 
 
 module.exports = class Block {
-    constructor(timestamp, transactions, previousHash = '') {
+    constructor(timestamp, transactions, previousHash) {
         this.previousHash = previousHash;
         this.timestamp = timestamp;
         this.transactions = transactions;
