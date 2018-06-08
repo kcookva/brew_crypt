@@ -21,14 +21,14 @@ module.exports = class Blockchain {
 
     getLatestBlock() {
         return this.chain[this.chain.length - 1];
-    }
+   }
 
     getAllBlocks() {
         return this.chain;
     }
 
     findBlock() {
-        var blockinput = readline.question('Enter the block timestamp to return information on it - ');
+        var blockinput = readline.question('\nEnter the block address to return information on it - ');
         return this.chain[blockinput];
     }
 
@@ -51,13 +51,13 @@ module.exports = class Blockchain {
     getBalanceOfAddress(address) {
         let balance = 0;
 
-        for(const block of this.chain){
-            for(const trans of block.transactions){
-                if(trans.fromAddress === address){
+        for(const block of this.chain) {
+            for(const trans of block.transactions) {
+                if(trans.fromAddress === address) {
                     balance -= trans.amount;
                 }
 
-                if(trans.toAddress === address){
+                if(trans.toAddress === address) {
                     balance += trans.amount;
                 }
             }

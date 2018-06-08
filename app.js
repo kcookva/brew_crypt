@@ -16,8 +16,6 @@ var userinput = readline.question('\n\nWould you like to search(search) for a bl
 
 if(userinput == 'mine') {
 
-    console.log(brewcrypt.getAllBlocks());
-
     var block1 = readline.question('\n\nEnter your blockchain address - ');
     var block2 = readline.question('\nEnter the address you are sending to - ');
 
@@ -36,6 +34,7 @@ if(userinput == 'mine') {
 
         console.log('\nBalance of second address is', brewcrypt.getBalanceOfAddress(block2));
         console.log('\n Is chain valid?: ', brewcrypt.isChainValid());
+    
     }
 }
 

@@ -1,18 +1,21 @@
 'use strict';
 
 // Import modules
+var uuid = require('random-uuid');
 const SHA512 = require("crypto-js/sha512");
 var readline = require('readline-sync');
 var Blockchain = require('./Blockchain.js');
 
 
 module.exports = class Block {
-    constructor(timestamp, transactions, previousHash) {
+
+    constructor(timestamp, transactions, previousHash, address) {
         this.previousHash = previousHash;
         this.timestamp = timestamp;
         this.transactions = transactions;
         this.hash = this.calculateHash();
         this.nonce = 0;
+        this.address = uuid();
     }
 
     calculateHash() {
