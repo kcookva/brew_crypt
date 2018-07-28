@@ -1,40 +1,43 @@
+//Important note!...
+//Do NOT run this with nodemon as it will NOT work correctly (for some reason)
+
+
 // Import modules
 var SHA512 = require("crypto-js/sha512");
 var readline = require('readline-sync')
 var Blockchain = require('./endpoints/Blockchain.js');
 var Block = require('./endpoints/Block.js');
 var Transaction = require('./endpoints/Block.js');
+var localip = require('local-ip');
 
 var brewcrypt = new Blockchain();
 
-console.log('\n\n Latest block is:', brewcrypt.getLatestBlock());
-console.log('\n-----------------------------');
 
-
-var userinput = readline.question('\n\nWould you like to search(search) for a block, mine a block(mine), or list all blocks(list)? - ');
+var userinput = readline.question('\n\nWould you like to search(search) for a block, mine a transaction(mine), or list all blocks(list)? - ');
 
 
 if(userinput == 'mine') {
 
-    var block1 = readline.question('\n\nEnter your blockchain address - ');
-    var block2 = readline.question('\nEnter the address you are sending to - ');
+    var fromAddress = readline.question('\n\nEnter your blockchain address - ');
+    var toAddress = readline.question('\nEnter the address you are sending to - ');
 
-    brewcrypt.createTransaction(new Transaction(block1, block2, 10));
+    brewcrypt.createTransaction(new Transaction(fromAddress, toAddress, amount));
 
-    if(block2 == block1) {
+    var amount = readline.question('\nEnter the amount to send - ');
+
+    if(fromAddress == toAddress) {
     console.log('You cannot send transactions to yourself...');
     return process.exit();
     }
 
-    var blockinput = readline.question('\nEnter amounts of blocks to be mined -  ');
-
-    for(i = 0; i <= blockinput; i++) {
+    for(i = 0; i <= 1; i++) {
         console.log('\n Starting the miner...');
-        brewcrypt.minePendingTransactions(block2);
+        brewcrypt.minePendingTransactions(toAddress);
 
-        console.log('\nBalance of second address is', brewcrypt.getBalanceOfAddress(block2));
+        console.log('\nBalance of your address is', brewcrypt.getBalanceOfAddress(fromAddress));
+        console.log('\nBalance of the receiving address is', brewcrypt.getBalanceOfAddress(toAddress));
         console.log('\n Is chain valid?: ', brewcrypt.isChainValid());
-    
+
     }
 }
 

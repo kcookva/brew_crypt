@@ -10,13 +10,13 @@ var Transaction = require('./Transactions.js');
 module.exports = class Blockchain {
     constructor() {
         this.chain = [this.createGenesisBlock()];
-        this.difficulty = 3;
+        this.difficulty = 1;
         this.pendingTransactions = [];
         this.miningReward = 10;
     }
 
     createGenesisBlock() {
-        return new Block(Date.now(), [], "0");
+        return new Block(Date.now(), [], '0', null);
     }
 
     getLatestBlock() {

@@ -5,6 +5,7 @@ var uuid = require('random-uuid');
 const SHA512 = require("crypto-js/sha512");
 var readline = require('readline-sync');
 var Blockchain = require('./Blockchain.js');
+var localip = require('local-ip');
 
 
 module.exports = class Block {
@@ -15,7 +16,7 @@ module.exports = class Block {
         this.transactions = transactions;
         this.hash = this.calculateHash();
         this.nonce = 0;
-        this.address = uuid();
+        this.address = localip('wlo1', function(err, res) {return res; });
     }
 
     calculateHash() {
