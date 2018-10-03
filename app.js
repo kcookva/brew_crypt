@@ -20,7 +20,7 @@ if(userinput == 'mine') {
 
     var fromAddress = readline.question('\n\nEnter your blockchain address - ');
     var toAddress = readline.question('\nEnter the address you are sending to - ');
-
+    //Create new transaction
     brewcrypt.createTransaction(new Transaction(fromAddress, toAddress, amount));
 
     var amount = readline.question('\nEnter the amount to send - ');
